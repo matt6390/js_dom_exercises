@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>JavaScript Example</title>
+  <style>
+    .hidden {
+      display: none;
+    }
+    .red {
+      color: red;
+      padding-left: 100px;
+    }
+    .turnRedButton {
+      color: blue;
+    }
+  </style>
+</head>
+<body>
+  <h1 onmousemove="showCoords(event)">Alexander Hamilton</h1>
+  <p onmousedown="doAnother()">Alexander Hamilton (January 11, 1755 or 1757 – July 12, 1804) was an American statesman and one of the Founding Fathers of the United States. He was an influential interpreter and promoter of the U.S. Constitution, as well as the founder of the nation's financial system, the Federalist Party, the United States Coast Guard, and The New York Post newspaper.</p>
+  <h2 id="p1"  onclick="toggleParagraph()"">Click on me if you'd like to hide the above paragraph</h2>
+  <p>The x coordinate is: <span id="x-coordinate">unknown...</span></p>
+  <p>The y coordinate is: <span id="y-coordinate">unknown...</span></p>
+  <button class="turnRedButton" onclick="randomColorHeader()">TOGGLE RED HEADER</button>
+
+
+  <script>
+    function randomColorHeader() {
+      var hTag = document.querySelector('h1');
+      var randomColor = "#";
+      var characters = "0123456789ABCDEF"
+
+      for (var i = 0; i < 6; i++) {
+        randomColor = randomColor + characters[Math.floor(Math.random() * 16)];
+      };
+      console.log(randomColor);
+      hTag.style.color = randomColor; 
+    }   //this creates a random color for our header
+
+
+    function redHeaderToggle() {
+      var hTag = document.querySelector('h1');
+      hTag.classList.toggle("red");
+      console.log(hTag.clientHeight);
+    }
+
+
+
+    function toggleParagraph() {
+      var pTag = document.querySelector('p');
+      pTag.classList.toggle("hidden");
+    }
+
+    function showCoords(event) {
+      console.log(event.clientX, event.clientY);
+      var xTag = document.querySelector("#x-coordinate");
+      var yTag = document.querySelector("#y-coordinate");
+      xTag.innerText = event.clientX;
+      yTag.innerText = event.clientY;
+    }
+
+    function  doSomething() {
+      var x = event.clientX;
+      var y = event.clientY;
+      console.log(x + ", " + y);
+    }
+
+    function doAnother() {
+      console.log("Stop clicking on my text!!!");
+    }
+    
+    function mouseCoordinates() {
+      var x = event.clientX;
+      var y = event.clientY;
+      document.getElementById("p1").innerHTML = x + " x co, " + y + " y co.";
+    }
+
+  </script>
+</body>
+</html>
+
