@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>JavaScript Example</title>
+  <style>
+    .complete {
+      text-decoration: line-through;
+    }
+
+    .hidden {
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <p onclick="strikeThrough(this)">Pay bills</p>
+  <p onclick="strikeThrough(this)">Wash car</p>
+  <p onclick="strikeThrough(this)">Get laundry</p>
+
+  <button onclick="hideAllComplete()">Hide Complete Tasks</button>
+  <button onclick="showAllTasks()">Show All Tasks</button>
+
+  <h4>Completed #: <span id="completed-count">0</span></h4>
+
+  <script>
+    function showAllTasks() {
+      var completedTasks = document.querySelectorAll('.hidden');
+      console.log(completedTasks);
+
+      completedTasks.forEach(function(completedTask) {
+        completedTask.classList.remove('hidden');
+        // completedTask.classList.toggle('complete');
+      });
+    }
+
+    function hideAllComplete() {
+      var pTags = document.querySelectorAll('.complete');
+      console.log(pTags);
+
+      pTags.forEach(function(pTag) {
+        pTag.classList.add('hidden');
+      });
+    }
+
+    function strikeThrough(pTag) {
+      pTag.classList.toggle("complete");
+      var completedTasks = document.querySelectorAll('.complete');
+      var countHolder = document.querySelector("#completed-count");
+      countHolder.innerText = completedTasks.length;
+
+    }
+
+  </script>
+</body>
+</html>
